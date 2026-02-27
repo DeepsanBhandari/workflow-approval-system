@@ -24,7 +24,7 @@ USER appuser
 EXPOSE 8080
 
 ENTRYPOINT ["java",
-  "-Dserver.port=${PORT:8080}",
+  "-Dserver.port=${PORT}",
   "-Dspring.profiles.active=prod",
   "-XX:+UseContainerSupport",
   "-XX:MaxRAMPercentage=75.0",
