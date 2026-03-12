@@ -3,19 +3,35 @@ spring:
     name: workflow-approval-system
 
   datasource:
-    url: ${DATABASE_URL}
-    username: ${POSTGRES_USER}
-    password: ${POSTGRES_PASSWORD}
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/workflow_db}
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:1234}
     driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-timeout: 30000
+      maximum-pool-size: 3
+      minimum-idle: 1
+      idle-timeout: 300000
+      max-lifetime: 1200000
+      connection-test-query: SELECT 1
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: ${DDL_AUTO:update}
     show-sql: false
     properties:
       hibernate:
         format_sql: true
     open-in-view: false
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: alpha
+    tags-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  show-actuator: false
 
 server:
   port: ${PORT:8080}
@@ -25,7 +41,7 @@ server:
 
 app:
   jwt:
-    secret: ${JWT_SECRET}
+    secret: ${JWT_SECRET:3cfa76ef14937c1c0ea519f8fc057a80fcd04a7420f8e8bcd0a7567c272e007b}
     expiration-ms: ${JWT_EXPIRATION_MS:86400000}
 
 management:

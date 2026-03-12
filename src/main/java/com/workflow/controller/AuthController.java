@@ -6,6 +6,7 @@ import com.workflow.dto.response.ApiResponse;
 import com.workflow.dto.response.AuthResponse;
 import com.workflow.service.AuthService;
 import com.workflow.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
 @Slf4j
+@Tag(name="Authentication", description="Register and login endpoints-no token required")
 public class AuthController {
 
     private final AuthService authService;

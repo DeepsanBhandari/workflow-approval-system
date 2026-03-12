@@ -3,6 +3,8 @@ package com.workflow.controller;
 import com.workflow.dto.response.ApiResponse;
 import com.workflow.dto.response.UserResponse;
 import com.workflow.service.UserService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -15,6 +17,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/users")
 @RequiredArgsConstructor
+@Tag(name="Users", description = "User profile and management endpoints")
+@SecurityRequirement(name="bearerAuth")
 public class UserController {
 
     private final UserService userService;

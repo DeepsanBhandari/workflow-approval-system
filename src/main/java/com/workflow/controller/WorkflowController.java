@@ -7,6 +7,8 @@ import com.workflow.dto.response.ApprovalHistoryResponse;
 import com.workflow.dto.response.PageResponse;
 import com.workflow.dto.response.WorkflowResponse;
 import com.workflow.service.WorkflowService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -24,6 +26,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/workflows")
 @RequiredArgsConstructor
+@Tag(name="Workflows", description="Create, submit, and approve workflows")
+@SecurityRequirement(name="bearerAuth")
 public class WorkflowController {
 
     private final WorkflowService workflowService;
